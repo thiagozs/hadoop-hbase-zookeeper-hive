@@ -75,12 +75,12 @@ Isso irá excluir no modo HARD, os arquivos salvos não serão possíveis restau
 Inserindo o mesmo range de ips que foi utilizado para gerar o cluster, será necessário
 colocar eles dentro do seu /etc/hosts.
 
-namenode : http://master.local:50070/dfshealth.jsp
-jobtracker : http://master.local:50030/jobtracker.jsp
+    namenode : http://master.local:50070/dfshealth.jsp
+    jobtracker : http://master.local:50030/jobtracker.jsp
 
 ### Visualizando a inteface do Hbase
 
-master : http://master.local:60010/master-status
+    master : http://master.local:60010/master-status
 
 ### Vagrant comandos.
 
