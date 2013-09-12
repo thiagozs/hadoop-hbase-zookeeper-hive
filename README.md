@@ -6,7 +6,7 @@ rodando [Apache Hadoop](http://hadoop.apache.org) pre-instalado.
 Algumas informações foram retiradas do site.
 http://cscarioni.blogspot.co.uk/2012/09/setting-up-hadoop-virtual-cluster-with.html
 
-## Deploy do cluster
+## Deploy do Cluster
 
 Primeiramente precisaremos duas ferramentar para a execução da virtualização. Mas atenção,
 esse tutorial somente vai funcionar em ambiente *UNIX.
@@ -45,7 +45,6 @@ Depois de rodar o [Vagrant](http://vagrantup.com/), vamos formatar o [Apache Had
      $ vagrant ssh master
      $ (master) sudo /opt/hadoop-1.2.1/bin/hadoop namenode -format -force
      $ (master) sudo /opt/hadoop-1.2.1/bin/start-all.sh
-
      $ (master) sudo /opt/hbase-0.94.11/bin/start-hbase.sh
 
 ### Para o Cluster
@@ -62,7 +61,7 @@ utilizando de novo o cluster:
      $ (master) sudo start-all.sh
 
 
-### Destroindo o Cluster
+### Destruindo o Cluster
 
      $ vagrant destroy
 
@@ -91,9 +90,7 @@ Logar na maquina master.
     $ (master) hadoop fs -ls /
     $ ...
 
-### Data
-
-## Hadoop
+## Hadoop base de dados
     namenode : `/srv/hadoop/namenode` 
     datanodes : `/srv/hadoop/datanode`
 
@@ -102,12 +99,6 @@ Logar na maquina master.
 Caso alguma alteração no Vagrantfile, e precise testa-lo ou replica-lo, utilize :
 
     $ vagrant provision
-
-## TODO
-
-- have it working on windows (estudo)
-- run as other user than root (estudo)
-- have a way to configure the names/ips in only one file (estudo)
 
 ### Atualizações do projeto
 
