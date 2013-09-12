@@ -24,7 +24,7 @@ apesar de não ser o melhor, me facilitou muito na hora das instalações.
 
 Executando o [Vagrant](http://vagrantup.com/) para subir o iso e startando a VM:
 
-    $ vagrant box add ubuntu64 http://files.vagrantup.com/precise64.box
+    $ vagrant box add ubuntu64 http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210.box
     $ vagrant up
 
 O script vai levantar 4 máquinas de 512mb de memoria - `master`, `hadoop1`, `hadoop2` 
