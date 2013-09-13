@@ -6,7 +6,7 @@ rodando [Apache Hadoop](http://hadoop.apache.org) pre-instalado.
 Algumas informações foram retiradas do site.
 http://cscarioni.blogspot.co.uk/2012/09/setting-up-hadoop-virtual-cluster-with.html
 
-## Deploy do Cluster
+## Deploy do cluster
 
 Primeiramente precisaremos duas ferramentar para a execução da virtualização. Mas atenção,
 esse tutorial somente vai funcionar em ambiente *UNIX.
@@ -24,7 +24,7 @@ apesar de não ser o melhor, me facilitou muito na hora das instalações.
 
 Executando o [Vagrant](http://vagrantup.com/) para subir o iso e startando a VM:
 
-    $ vagrant box add ubuntu64 http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210.box
+    $ vagrant box add ubuntu64 http://files.vagrantup.com/precise64.box
     $ vagrant up
 
 O script vai levantar 4 máquinas de 512mb de memoria - `master`, `hadoop1`, `hadoop2` 
@@ -45,6 +45,7 @@ Depois de rodar o [Vagrant](http://vagrantup.com/), vamos formatar o [Apache Had
      $ vagrant ssh master
      $ (master) sudo /opt/hadoop-1.2.1/bin/hadoop namenode -format -force
      $ (master) sudo /opt/hadoop-1.2.1/bin/start-all.sh
+
      $ (master) sudo /opt/hbase-0.94.11/bin/start-hbase.sh
 
 ### Para o Cluster
@@ -61,7 +62,7 @@ utilizando de novo o cluster:
      $ (master) sudo start-all.sh
 
 
-### Destruindo o Cluster
+### Destroindo o Cluster
 
      $ vagrant destroy
 
@@ -75,12 +76,12 @@ Isso irá excluir no modo HARD, os arquivos salvos não serão possíveis restau
 Inserindo o mesmo range de ips que foi utilizado para gerar o cluster, será necessário
 colocar eles dentro do seu /etc/hosts.
 
-    namenode : http://master.local:50070/dfshealth.jsp
-    jobtracker : http://master.local:50030/jobtracker.jsp
+namenode : http://master.local:50070/dfshealth.jsp
+jobtracker : http://master.local:50030/jobtracker.jsp
 
 ### Visualizando a inteface do Hbase
 
-    master : http://master.local:60010/master-status
+master : http://master.local:60010/master-status
 
 ### Vagrant comandos.
 
@@ -90,7 +91,9 @@ Logar na maquina master.
     $ (master) hadoop fs -ls /
     $ ...
 
-## Hadoop base de dados
+### Data
+
+## Hadoop
     namenode : `/srv/hadoop/namenode` 
     datanodes : `/srv/hadoop/datanode`
 
@@ -99,6 +102,12 @@ Logar na maquina master.
 Caso alguma alteração no Vagrantfile, e precise testa-lo ou replica-lo, utilize :
 
     $ vagrant provision
+
+## TODO
+
+- have it working on windows (estudo)
+- run as other user than root (estudo)
+- have a way to configure the names/ips in only one file (estudo)
 
 ### Atualizações do projeto
 

@@ -1,4 +1,4 @@
-#127.0.0.1       localhost
+127.0.0.1       localhost
 10.0.1.110  master.local  master 
 10.0.1.111  hadoop1.local hadoop1
 10.0.1.112  hadoop2.local hadoop2

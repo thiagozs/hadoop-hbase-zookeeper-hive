@@ -32,20 +32,7 @@
 	</property>
 	<property>
 		<name>hbase.zookeeper.quorum</name>
-		<value>master.local,hadoop1.local,hadoop2.local,hadoop3.local</value>
+		<value>master.local</value>
 	</property>
 
-	 <!-- property>
-	    <name>hbase.master.dns.interface</name>
-	    <value>lo,eth0,eth1</value>
-	 </property>
-	 <property>
-	    <name>hbase.regionserver.dns.interface</name>
-	    <value>lo,eth0,eth1</value>
-	 </property -->
-
-	<!-- property>
-		<name>hfile.block.cache.size</name>
-		<value>0</value>
-	</property -->
 </configuration>

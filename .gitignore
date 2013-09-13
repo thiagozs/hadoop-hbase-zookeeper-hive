@@ -2,3 +2,4 @@
 *.md5
 *.mds
 *.log
+.vagrant

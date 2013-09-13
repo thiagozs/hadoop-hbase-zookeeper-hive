@@ -53,10 +53,16 @@ class hbase {
       require => Exec["unpack_hbase"]
   }
 
-  # file { "/etc/profile.d/hadoop-path.sh":
-  #   content => template("hadoop/hadoop-path.sh.erb"),
-  #   owner => root,
-  #   group => root,
-  # }
+   file { "/etc/profile.d/hbase-path.sh":
+     content => template("hbase/hbase-path.sh.erb"),
+     owner => root,
+     group => root,
+   }
+
+  exec{ "load_vars_hbase":
+    command =>  "echo '[[ -s \'/etc/profile.d/hbase-path.sh\' ]] && . \'/etc/profile.d/hbase-path.sh\' # Load Hive Vars function' >> /root/.bashrc", 
+    path => $path,
+  }
+
 
 }
