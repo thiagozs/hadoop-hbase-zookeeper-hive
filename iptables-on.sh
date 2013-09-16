@@ -7,9 +7,10 @@ sudo iptables -A FORWARD -i eth0 -o vboxnet1 -j ACCEPT
 
 #Hbase ports
 sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 60000 -j DNAT --to 10.0.1.110:60000
-sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 60010 -j DNAT --to 10.0.1.110:60010
-sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 60030 -j DNAT --to 10.0.1.110:60030
-sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 60020 -j DNAT --to 10.0.1.111:60020
+
+sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 60030 -j DNAT --to 10.0.1.113:60030
+sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 60020 -j DNAT --to 10.0.1.112:60020
+sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 60010 -j DNAT --to 10.0.1.111:60010
 
 #Hadoop ports
 sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 50030 -j DNAT --to 10.0.1.110:50030
@@ -23,4 +24,4 @@ sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 9090 -j DNAT --to 10.0
 sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 2181 -j DNAT --to 10.0.1.110:2181
 
 #Save =)
-sudo iptables-save
+#sudo iptables-save
