@@ -48,21 +48,22 @@ Depois de rodar o [Vagrant](http://vagrantup.com/), vamos formatar o [Apache Had
 
      $ (master) sudo /opt/hbase-0.94.11/bin/start-hbase.sh
 
-### Para o Cluster
+### Parando o Cluster
 
      $ vagrant ssh master
-     $ (master) sudo stop-all.sh
+     $ (master) sudo /opt/hbase-0.94.11/bin/stop-hbase.sh
+     $ (master) sudo /opt/hadoop-1.2.1/bin/stop-all.sh
      $ exit or Ctrl-D
      $ vagrant halt
 
-utilizando de novo o cluster:
+     utilizando de novo o cluster:
 
      $ vagrant up
      $ vagrant ssh master
-     $ (master) sudo start-all.sh
+     $ (master) sudo /opt/hadoop-1.2.1/bin/start-all.sh
+     $ (master) sudo /opt/hbase-0.94.11/bin/start-hbase.sh
 
-
-### Destroindo o Cluster
+### Destruindo o Cluster
 
      $ vagrant destroy
 
@@ -88,7 +89,7 @@ master : http://master.local:60010/master-status
 Logar na maquina master.
 
     $ vagrant ssh master
-    $ (master) hadoop fs -ls /
+    $ (master) sudo /opt/hadoop-1.2.1/bin/hadoop fs -ls /
     $ ...
 
 ### Data
@@ -102,12 +103,6 @@ Logar na maquina master.
 Caso alguma alteração no Vagrantfile, e precise testa-lo ou replica-lo, utilize :
 
     $ vagrant provision
-
-## TODO
-
-- have it working on windows (estudo)
-- run as other user than root (estudo)
-- have a way to configure the names/ips in only one file (estudo)
 
 ### Atualizações do projeto
 
