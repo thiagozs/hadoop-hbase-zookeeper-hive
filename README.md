@@ -48,22 +48,38 @@ Depois de rodar o [Vagrant](http://vagrantup.com/), vamos formatar o [Apache Had
 
      $ (master) sudo /opt/hbase-0.94.11/bin/start-hbase.sh
 
-### Parando o Cluster
+### Liberando o Cluster(hbase) transparente
+
+Incluindo a porta do HBase tanto de entrada como saida.
+
+    $ (master) sudo su
+    $ ssh hadoop1
+    $ sudo iptables -A PREROUTING -t nat -i eth1 -p tcp --dport 60020 -j DNAT --to 10.0.1.111:60020
+    $ exit
+    
+    $ ssh hadoop2
+    $ sudo iptables -A PREROUTING -t nat -i eth1 -p tcp --dport 60020 -j DNAT --to 10.0.1.112:60020
+    $ exit
+   
+    $ ssh hadoop3
+    $ sudo iptables -A PREROUTING -t nat -i eth1 -p tcp --dport 60020 -j DNAT --to 10.0.1.113:60020
+    $ exit
+
+### Para o Cluster
 
      $ vagrant ssh master
-     $ (master) sudo /opt/hbase-0.94.11/bin/stop-hbase.sh
-     $ (master) sudo /opt/hadoop-1.2.1/bin/stop-all.sh
+     $ (master) sudo stop-all.sh
      $ exit or Ctrl-D
      $ vagrant halt
 
-     utilizando de novo o cluster:
+utilizando de novo o cluster:
 
      $ vagrant up
      $ vagrant ssh master
-     $ (master) sudo /opt/hadoop-1.2.1/bin/start-all.sh
-     $ (master) sudo /opt/hbase-0.94.11/bin/start-hbase.sh
+     $ (master) sudo start-all.sh
 
-### Destruindo o Cluster
+
+### Destroindo o Cluster
 
      $ vagrant destroy
 
@@ -89,7 +105,7 @@ master : http://master.local:60010/master-status
 Logar na maquina master.
 
     $ vagrant ssh master
-    $ (master) sudo /opt/hadoop-1.2.1/bin/hadoop fs -ls /
+    $ (master) hadoop fs -ls /
     $ ...
 
 ### Data

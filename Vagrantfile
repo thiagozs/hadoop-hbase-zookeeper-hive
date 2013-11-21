@@ -11,6 +11,7 @@ Vagrant.configure("1") do |config|
 
   # Def VM's master..hadoop3
   config.vm.define :hadoop1 do |hadoop1_config|
+    hadoop1_config.vm.network :bridged, :bridge => 'eth0'
     hadoop1_config.vm.network :hostonly, "10.0.1.111"
     hadoop1_config.vm.host_name = "hadoop1.local"
     hadoop1_config.vm.provision :puppet do |hadoop1_puppet|
@@ -21,6 +22,7 @@ Vagrant.configure("1") do |config|
   end
   
   config.vm.define :hadoop2 do |hadoop2_config|
+    hadoop2_config.vm.network :bridged, :bridge => 'eth0'
     hadoop2_config.vm.network :hostonly, "10.0.1.112"
     hadoop2_config.vm.host_name = "hadoop2.local"
     hadoop2_config.vm.provision :puppet do |hadoop2_puppet|
@@ -31,6 +33,7 @@ Vagrant.configure("1") do |config|
   end
   
   config.vm.define :hadoop3 do |hadoop3_config|
+    hadoop3_config.vm.network :bridged, :bridge => 'eth0'
     hadoop3_config.vm.network :hostonly, "10.0.1.113"
     hadoop3_config.vm.host_name = "hadoop3.local"
     hadoop3_config.vm.provision :puppet do |hadoop3_puppet|
@@ -41,6 +44,7 @@ Vagrant.configure("1") do |config|
   end
   
    config.vm.define :master do |master_config|
+    master_config.vm.network :bridged, :bridge => 'eth0'
     master_config.vm.network :hostonly, "10.0.1.110"
     master_config.vm.host_name = "master.local"
     master_config.vm.provision :puppet do |master_puppet|
@@ -49,28 +53,13 @@ Vagrant.configure("1") do |config|
       master_puppet.module_path = "modules"
     end
 
-    #hadoop portas
-    #master_config.vm.forward_port 50030, 50030
-    #master_config.vm.forward_port 50070, 50070
-    #master_config.vm.forward_port 50075, 50075
-
-    # HBase web UI ports
-    #master_config.vm.forward_port 60010, 60010
-    #master_config.vm.forward_port 60020, 60020
-    #master_config.vm.forward_port 60030, 60030
-
-    # Thrift
-    #master_config.vm.forward_port 9090, 9090
-
-    # ZooKeepper
-    #master_config.vm.forward_port 2181, 2181
-
-  end
+end
 
 end
 
 Vagrant.configure("2") do |config|
     config.vm.provider :virtualbox do |vb|
-        vb.customize ["modifyvm", :id, "--memory", "512"]
+        vb.customize ["modifyvm", :id, "--memory", "1252"]
+        #vb.gui = true # debug
     end
 end

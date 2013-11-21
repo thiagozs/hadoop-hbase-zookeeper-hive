@@ -27,7 +27,7 @@
 
 # The java implementation to use.  Java 1.6 required.
 # export JAVA_HOME=/usr/java/jdk1.6.0/
-export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64
+ export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64
 
 # Extra Java CLASSPATH elements.  Optional.
 # export HBASE_CLASSPATH=
@@ -39,7 +39,7 @@ export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64
 # Below are what we set by default.  May only work with SUN JVM.
 # For more on why as well as other possible settings,
 # see http://wiki.apache.org/hadoop/PerformanceTuning
-export HBASE_OPTS="-XX:+UseConcMarkSweepGC"
+#export HBASE_OPTS="-XX:+UseConcMarkSweepGC"
 
 # Uncomment one of the below three options to enable java garbage collection logging for the server-side processes.
 
@@ -89,10 +89,10 @@ export HBASE_REGIONSERVERS=${HBASE_HOME}/conf/regionservers
 # export HBASE_BACKUP_MASTERS=${HBASE_HOME}/conf/backup-masters
 
 # Extra ssh options.  Empty by default.
-# export HBASE_SSH_OPTS="-o ConnectTimeout=1 -o SendEnv=HBASE_CONF_DIR"
+export HBASE_SSH_OPTS="-o ConnectTimeout=1 -o SendEnv=HBASE_CONF_DIR"
 
 # Where log files are stored.  $HBASE_HOME/logs by default.
-export HBASE_LOG_DIR=${HBASE_HOME}/logs
+# export HBASE_LOG_DIR=${HBASE_HOME}/logs
 
 # Enable remote JDWP debugging of major HBase processes. Meant for Core Developers 
 # export HBASE_MASTER_OPTS="$HBASE_MASTER_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8070"
@@ -101,7 +101,7 @@ export HBASE_LOG_DIR=${HBASE_HOME}/logs
 # export HBASE_ZOOKEEPER_OPTS="$HBASE_ZOOKEEPER_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8073"
 
 # A string representing this instance of hbase. $USER by default.
-# export HBASE_IDENT_STRING=$USER
+ export HBASE_IDENT_STRING=$USER
 
 # The scheduling priority for daemon processes.  See 'man nice'.
 # export HBASE_NICENESS=10
@@ -115,4 +115,4 @@ export HBASE_LOG_DIR=${HBASE_HOME}/logs
 # export HBASE_SLAVE_SLEEP=0.1
 
 # Tell HBase whether it should manage it's own instance of Zookeeper or not.
-# export HBASE_MANAGES_ZK=true
+ export HBASE_MANAGES_ZK=true

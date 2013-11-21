@@ -4,7 +4,7 @@ class hbase {
   $hbase_tarball = "hbase-${hbase_version}.tar.gz"
   $hbase_tarball_checksums = "${hbase_tarball}.mds"
 
-  file { ["/srv/hbase/",  "/srv/hbase/data"]:
+  file { ["/srv/hbase/",  "/srv/hbase/data", "/srv/hbase/export", "/srv/hbase/zookeeper", "/srv/hbase/zookeeper/data"]:
     ensure => "directory"
   }
 
@@ -21,6 +21,15 @@ class hbase {
     creates => "/vagrant/$hbase_tarball",
     require => [Package["openjdk-6-jdk"], Exec["download_grrr2"]]
   }
+
+  #  exec { "download_hbase_checksum":
+  #  command => "/tmp/grrr apache/hbase/hbase-${hbase_version}/$hbase_tarball_checksums -O /vagrant/$habase_tarball_checksums --read-timeout=5 --tries=0",
+  #  timeout => 1800,
+  #  path => $path,
+  #  unless => "ls /vagrant | grep ${hbase_tarball_checksums}",
+  #  require => Exec["download_grrr2"],
+  #}
+
 
   exec { "unpack_hbase":
     command => "tar xf /vagrant/${hbase_tarball} -C /opt",
@@ -57,11 +66,13 @@ class hbase {
      content => template("hbase/hbase-path.sh.erb"),
      owner => root,
      group => root,
+     require => Exec["unpack_hbase"]
    }
 
   exec{ "load_vars_hbase":
     command =>  "echo '[[ -s \'/etc/profile.d/hbase-path.sh\' ]] && . \'/etc/profile.d/hbase-path.sh\' # Load Hive Vars function' >> /root/.bashrc", 
     path => $path,
+    require => Exec["unpack_hbase"]
   }
 
 

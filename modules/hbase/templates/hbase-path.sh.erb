@@ -1,3 +1,8 @@
 export HBASE_HOME=<%=hbase_home%>
 export HBASE_CONF_DIR=$HBASE_HOME/conf
+export HBASE_OPTS="-XX:+UseConcMarkSweepGC -Djava.net.preferIPv4Stack=true"
 export PATH=$HBASE_HOME/bin:$PATH
+
+#export HBASE_MANAGES_ZK=true
+#export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64/
+#export PATH=$JAVA_HOME/bin:$PATH
